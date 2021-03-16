@@ -31,7 +31,7 @@ class EmpleadosController extends Controller
         return view('empleados.show', ['empleados' => Empleados::find($id)]);
     }
 
-     public function edit($id)
+    public function edit($id)
     {
         return view('empleados.update', ['empleados' => Empleados::find($id)]);
     }

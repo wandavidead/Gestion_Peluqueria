@@ -12,7 +12,7 @@
 				<div class="card-body" style="height:377px">
 					<div class="d-flex flex-column align-items-center text-center">
 						<img
-							src="data:image/png;base64, {{ $empleados->foto }}"
+							src="data:image/png;base64, {{ pg_unescape_bytea(stream_get_contents($empleados->foto)) }}"
 							class="rounded-circle"
 							width="128px"
 							height="128px"

@@ -113,7 +113,6 @@
 							name="foto"
 							id="foto"
 							class="form-control-file"
-							value="{{$empleados->foto}}"
 						/>
 						@if ($errors->has('foto'))
 						<span class="text-danger">{{ $errors->first('foto') }}</span>
