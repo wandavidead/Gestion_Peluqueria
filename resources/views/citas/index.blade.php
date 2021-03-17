@@ -4,6 +4,7 @@
 	<h1>@lang('Appointments')</h1>
 	<a class="btn btn-success" href="/citas/create">@lang('Add Appointment')</a>
 	<a class="btn btn-danger" href="/myPDF">@lang('Imprimir PDF')</a>
+	<div id="evoCalendar"></div>
 	<table id="table_id" class="table table-bordered table-striped" style="border: solid 1px #000;">
 		<thead>
 			<tr>

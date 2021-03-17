@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class ProductosController extends Controller
 {
-
     public function index()
     {
 		
@@ -57,6 +56,9 @@ class ProductosController extends Controller
 
     public function store(ProductosRequest $request)
     {
+        $input = $request->all();
+        $input['prod'] = json_encode($input['prod']);
+        dd($input['prod'] = json_encode($input['prod']));
         $validatedData = $request->all();
 		$validatedData = $request->except('proveedor_id');
 		$crearRelacion = $request->only('proveedor_id');
@@ -67,7 +69,7 @@ class ProductosController extends Controller
 			ProductosProveedores::create($crearRelacion);
 			DB::commit();
 			return redirect('/productos');
-   		} catch (\Exception $e){
+        } catch (\Exception $e){
             dd($e);
 			DB::rollback();
 			return view('productos.create', ['error' => true,'proveedores' => Proveedores::all(),'categorias' => Categorias::all()]);
@@ -79,7 +81,7 @@ class ProductosController extends Controller
         return view('productos.show', ['productos' => Productos::find($id)]);
     }
 
-     public function edit($id)
+    public function edit($id)
     {
         return view('productos.update', ['productos' => Productos::find($id)]);
     }

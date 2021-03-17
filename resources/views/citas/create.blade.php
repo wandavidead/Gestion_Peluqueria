@@ -16,10 +16,10 @@
 					>
 					<div class="col-lg-9">
 						<input
-							type="date"
+							type="text"
 							name="fecha_cita"
 							id="fecha_cita"
-							class="form-control input-sm"
+							class="form-control"
 						/>
 						@if ($errors->has('fecha_cita'))
 						<span class="text-danger">{{ $errors->first('fecha_cita') }}</span>

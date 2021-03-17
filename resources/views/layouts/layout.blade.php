@@ -7,15 +7,13 @@
 			rel="stylesheet"
 			id="bootstrap-css"
 		/>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link
 			rel="stylesheet"
 			href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 			integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 			crossorigin="anonymous"
 		/>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 		<link
 			rel="stylesheet"
 			href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
@@ -24,7 +22,9 @@
 			rel="stylesheet"
 			href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css"
 		/>
-		<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw==" crossorigin="anonymous" />
+		<link rel="stylesheet" type="text/css" href="css/evo-calendar.css" />
+		<link rel="stylesheet" type="text/css" href="css/evo-calendar.midnight-blue.css" />
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
@@ -97,11 +97,10 @@
 									class="dropdown-item"
 									href="{{ route('logout') }}"
 									onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
+                                    document.getElementById('logout-form').submit();"
 								>
 									{{ __('Logout') }}
 								</a>
-
 								<form
 									id="logout-form"
 									action="{{ route('logout') }}"
@@ -147,6 +146,14 @@
 		<div>
 			@yield('content')
 		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="js/evo-calendar.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous"></script>
 		<style>
 			.navbar {
 				background: #fff;
@@ -254,6 +261,63 @@
 			$(document).ready(function () {
 				$('#table_id').DataTable();
 			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(function () {
+					$('#fecha_cita').datetimepicker();
+				});
+				$('select').selectpicker();
+			});
+		</script>  
+		<script>
+			$(document).ready(function () {
+				/* myEvents = [{
+						id: "required-id-1",
+						name: "Maria, 19:30:00",
+						date: ["2021-03-17 19:30:00"],
+						description: "Cortar el pelo",
+						type: "event",
+					},
+					{
+						id: "required-id-1",
+						name: "Cita Maria del Carmen",
+						date: ["2021-03-18 22:30:00"],
+						description: "Cortar el pelo",
+						type: "event",
+					},
+					{
+						id: "required-id-1",
+						name: "Cita Maria del Carmen",
+						date: ["2021-03-17 22:30:00"],
+						description: "Cortar el pelo",
+						type: "event",
+					},
+					{
+						id: "required-id-2",
+						name: "Valentine's Day",
+						date: "Fri Feb 14 2020 00:00:00 GMT-0800 (Pacific Standard Time)",
+						type: "holiday",
+						everyYear: true,
+						color: "#222"
+					},
+					{
+						id: "required-id-3",
+						name: "Custom Date",
+						badge: "08/03 - 08/05",
+						date: ["August/03/2020", "August/05/2020"],
+						description: "Description here",
+						type: "event"
+					},
+				], */ 
+	
+				$('#evoCalendar').evoCalendar({
+						theme: 'Midnight Blue',
+						language: 'es',
+						/* calendarEvents: myEvents, */
+				})
+	
+				})
 		</script>
 	</body>
 </html>

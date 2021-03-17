@@ -45,7 +45,7 @@ class CitasController extends Controller
     {
         $validatedData = $request->validate([
                 'fecha_cita' => 'required',
-			 	'cliente_id' => 'required',
+				'cliente_id' => 'required',
 				'empleado_id' => 'required',
 				'tratamiento_id' => 'required',
             ]);
