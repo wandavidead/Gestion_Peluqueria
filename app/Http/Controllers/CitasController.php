@@ -91,7 +91,7 @@ class CitasController extends Controller
 		$actualizarCita = $request->only('tratamiento_id');
 		Citas::find($id)->update($validatedData);
 		CitasTratamientos::find($id)->update($actualizarCita);
-		return redirect('/citas');
+		return redirect('/citas/'.$id);
     }
 
     public function destroy($id)

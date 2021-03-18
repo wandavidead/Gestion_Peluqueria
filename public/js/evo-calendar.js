@@ -23,10 +23,10 @@
                 eventHeaderFormat: 'MM d, yyyy',
                 firstDayOfWeek: 1,
                 language: 'en',
-                todayHighlight: false,
-                sidebarDisplayDefault: true,
+                todayHighlight: true,
+                sidebarDisplayDefault: false,
                 sidebarToggler: true,
-                eventDisplayDefault: true,
+                eventDisplayDefault: false,
                 eventListToggler: true,
                 calendarEvents: null
             };

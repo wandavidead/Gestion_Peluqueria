@@ -18,11 +18,10 @@
 					>
 					<div class="col-lg-9">
 						<input
-							type="date"
+							type="text"
 							name="fecha_cita"
 							id="fecha_cita"
-							class="form-control input-sm"
-							value="{{$citas->fecha_cita}}"
+							class="form-control"
 						/>
 						@if ($errors->has('fecha_cita'))
 						<span class="text-danger">{{ $errors->first('fecha_cita') }}</span>
@@ -95,7 +94,7 @@
 				<div class="form-group row">
 					<label class="col-lg-3 col-form-label form-control-label"></label>
 					<div class="col-lg-9">
-						<a href="{{ route('citas.index') }}" class="btn btn-info"
+						<a href="/citas/{{$citas->id}}" class="btn btn-info"
 							>@lang('Return')</a
 						>
 						<input type="submit" value="@lang('Save')" class="btn btn-success" />
