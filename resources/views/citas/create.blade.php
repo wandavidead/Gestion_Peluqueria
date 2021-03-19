@@ -18,6 +18,7 @@
 						<input
 							type="text"
 							name="fecha_cita"
+							autocomplete="off"
 							id="fecha_cita"
 							class="form-control"
 						/>

@@ -63,13 +63,13 @@
                     </li>
                     <li>
                         <a href="{{ url('/menu') }}">
-                            <i class="fa fa-book"></i>
+                            <i class="fas fa-home"></i>
                             <span>@lang('Home')</span>
                         </a>
                     </li>
                     <li class="sidebar-dropdown">
                         <a>
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fas fa-cut"></i>
                             <span>@lang('Services')</span>
                         </a>
                         <div class="sidebar-submenu">
@@ -103,7 +103,7 @@
                     </li>
                     <li class="sidebar-dropdown">
                         <a>
-                            <i class="fa fa-globe"></i>
+                            <i class="fas fa-language"></i>
                             <span>@lang('Language')</span>
                         </a>
                         <div class="sidebar-submenu">
