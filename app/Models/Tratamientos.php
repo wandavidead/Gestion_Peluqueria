@@ -15,12 +15,12 @@ class Tratamientos extends Model
 	
 	public function citas()
     {
- 		return $this->belongsToMany(Citas::class,'citas_tratamientos');
+		return $this->belongsToMany(Citas::class,'citas_tratamientos');
     }
 	
 	public function productos()
     {
- 		return $this->belongsToMany(Productos::class,'tratamiento_productos');
+		return $this->belongsToMany(Productos::class,'tratamiento_productos');
     }
 	
 	public function getNombreCompletoAttribute(){
