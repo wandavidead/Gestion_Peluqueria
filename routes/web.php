@@ -8,20 +8,19 @@ use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Cantidad;
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+	return view('dashboard');
+})->name('dashboard');
 
-/*Aplicacion de parte del Cliente */
-Route::get('/shop', function () {
-	return view('shop/shop');
-});
-
-
-/*Aplicacion de parte del servidor */
+//Pagina principal
 Route::get('/', function () {
 	return view('PeluWelcome');
 });
 
+//Esta parte se encarga de la traducion
 Route::get('lang/{lang}', function ($lang) {
 	session(['lang' => $lang]);
 	return \Redirect::back();
@@ -29,9 +28,7 @@ Route::get('lang/{lang}', function ($lang) {
 	'lang' => 'en|es'
 ]);
 
-Route::get('auth/google', [LoginController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 	Route::resource('citas', CitasController::class);
 	Route::resource('tratamientos', TratamientosController::class);
 	Route::resource('productos', ProductosController::class);
@@ -39,17 +36,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::resource('clientes', ClientesController::class);
 	Route::resource('empleados', EmpleadosController::class);
 	Route::get('myPDF', [CitasController::class, 'generatePDF']);
-	Route::post('productos', [ProductosController::class,'store'])->name('productos.store')->middleware(Cantidad::class);
+	Route::post('productos', [ProductosController::class, 'store'])->name('productos.store')->middleware(Cantidad::class);
+	Route::get('/menu', function () {
+		return view('menu');
+	})->name('menu');
 });
-Route::middleware(['auth:sanctum', 'verified'])->get('/menu', function () {
-return view('menu');
-})->name('menu');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Auth::routes();
-/*Aplicacion de parte del Cliente de la peluqueria, la tienda.*/
-
-
-
-
-
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
