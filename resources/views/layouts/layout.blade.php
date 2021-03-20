@@ -127,11 +127,10 @@
             </div>
         </div>
         <div class="sidebar-footer">
-            <a href="#">
-                <i class="fa fa-envelope"></i>
-                <span class="badge badge-pill badge-success notification">7</span>
-            </a>
             <a>
+                <i class="fa fa-envelope"></i>
+            </a>
+            <a href="{{ route('profile.show') }}">
                 <i class="fa fa-cog"></i>
             </a>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();

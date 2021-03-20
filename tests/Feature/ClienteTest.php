@@ -13,7 +13,7 @@ class ClienteTest extends TestCase
 	
     public function testExample()
     {
-        // Esto es para usar el test con datos a mano
+        /*// Esto es para usar el test con datos a mano
         $response = $this->json('POST', '/taxis', [
 			'nombre' => 'Marcos'
 			'apellidos' => 'Rodriguez'
@@ -22,7 +22,6 @@ class ClienteTest extends TestCase
 
         $response
             ->assertStatus(302);
-		/*
 		$datos = [
 			'nombre' => $this->faker->name,
             'apellidos' => $this->faker->lastName,
@@ -32,8 +31,5 @@ class ClienteTest extends TestCase
 		
         $response
             ->assertStatus(302);*/
-    }
-}
-
     }
 }
