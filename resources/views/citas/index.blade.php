@@ -9,8 +9,9 @@
 @section("content")
 <div class="container">
 	<h1>@lang('Appointments')</h1>
-	<a class="btn btn-success" href="/citas/create">@lang('Add Appointment')</a>
-	<a class="btn btn-danger" href="/myPDF">@lang('Imprimir PDF')</a>
+	<a class="btn " href="/citas/create"><i class="fas fa-calendar-plus fa-3x"></i>
+	</a>
+	<a class="btn" href="/myPDF"><i class="far fa-file-pdf fa-3x"></i></a>
 	<div id="evoCalendar"></div>
 </div>
 <script>
@@ -39,14 +40,12 @@
 				language: 'es',
 				calendarEvents: myEvents, 
 		})
-
 		$(document).on('click','.event-info',function(){
 			id = $(this).parent().data('event-index');
 			window.location.replace('/citas/' + id);
 		});
 	})
 </script>
-
 @endsection
 
 

@@ -17,7 +17,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 //Pagina principal
 Route::get('/', function () {
-	return view('PeluWelcome');
+	return view('auth/login');
 });
 
 //Esta parte se encarga de la traducion
