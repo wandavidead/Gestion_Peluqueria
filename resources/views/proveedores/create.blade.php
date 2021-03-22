@@ -40,7 +40,7 @@
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label"></label>
                         <div class="col-lg-9">
-                            <a href="{{ route('proveedores.index') }}" class="btn "><i class="fas fa-chevron-circle-left fa-3x"></i></a>
+                            <a href="{{ route('proveedores.index') }}" class="btn "><i class="fas fa-chevron-circle-left fa-2x"></i></a>
                             <input type="submit" value="@lang('Save')" class="btn btn-success" />
                         </div>
                     </div>

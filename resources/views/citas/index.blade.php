@@ -8,7 +8,9 @@
 @endsection
 @section("content")
 <div class="container">
+	@section("title")
 	<h1>@lang('Appointments')</h1>
+	@endsection
 	<a class="btn " href="/citas/create"><i class="fas fa-calendar-plus fa-3x"></i>
 	</a>
 	<a class="btn" href="/myPDF"><i class="far fa-file-pdf fa-3x"></i></a>

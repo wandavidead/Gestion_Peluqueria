@@ -4,7 +4,7 @@
         <div class="card card-outline-secondary">
             <div class="card-body d-flex">
                 <h3 class="mb-0">@lang('Treatment')</h3>
-                <a href="/tratamientos" class="btn ml-auto"><i class="fas fa-chevron-circle-left fa-3x"></i></a>
+                <a href="/tratamientos" class="btn ml-auto"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
             </div>
         </div>
         <div class="row gutters-sm">

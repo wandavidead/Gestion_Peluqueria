@@ -11,10 +11,10 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Cantidad;
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+/* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 	return view('dashboard');
 })->name('dashboard');
-
+ */
 //Pagina principal
 Route::get('/', function () {
 	return view('auth/login');
