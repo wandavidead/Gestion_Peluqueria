@@ -1,9 +1,9 @@
 @extends('layouts.layout') @section('content')
     <div class="col-md-8 offset-md-2 mt-5">
         <div class="card card-outline-secondary">
-            <div class="card-header">
-                <h3 class="mb-0">@lang('Edit Appointment')</h3>
-            </div>
+            @section("title")
+                <h1>@lang('Edit Appointment')</h1>
+            @endsection
             <div class="card-body">
                 <form class="form" method="POST" action="{{ route('citas.update', $citas->id) }}" role="form">
                     @method('PUT') @csrf
@@ -20,11 +20,9 @@
                         <label class="col-lg-3 col-form-label form-control-label">@lang('Clients')</label>
                         <div class="col-lg-9">
                             <select name="cliente_id" id="cliente_id" class="form-control select-sm"
-                                value="{{ $citas->cliente_id }}">
-                                <option>{{ $citas->cliente_id }}</option>
+                                value="{{ $citas->clientes->nombre_completo }}">
                                 @foreach ($clientes as $cliente)
-                                    <option value="{{ $cliente->id }}">{{ $cliente->id }} -
-                                        {{ $cliente->nombre_completo }}</option>
+                                    <option value="{{ $cliente->id }}">{{ $cliente->nombre_completo }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('cliente_id'))
@@ -36,11 +34,9 @@
                         <label class="col-lg-3 col-form-label form-control-label">@lang('Employees')</label>
                         <div class="col-lg-9">
                             <select name="empleado_id" id="empleado_id" class="form-control select-sm"
-                                value="{{ $citas->empleado_id }}">
-                                <option>{{ $citas->empleado_id }}</option>
+                                value="{{ $citas->empleados->nombre_completo  }}">
                                 @foreach ($empleados as $empleado)
-                                    <option value="{{ $empleado->id }}">{{ $empleado->id }} -
-                                        {{ $empleado->nombre_completo }}</option>
+                                    <option value="{{ $empleado->id }}">{{ $empleado->nombre_completo }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('empleado_id'))
@@ -53,10 +49,8 @@
                         <div class="col-lg-9">
                             <select name="tratamiento_id" id="tratamiento_id" class="form-control select-sm"
                                 value="{{ $datos }}">
-                                <option>{{ $datos }}</option>
                                 @foreach ($tratamientos as $tratamiento)
-                                    <option value="{{ $tratamiento->id }}">{{ $tratamiento->id }} -
-                                        {{ $tratamiento->nombre_completo }}</option>
+                                    <option value="{{ $tratamiento->id }}">{{ $tratamiento->nombre_completo }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('tratamiento_id'))

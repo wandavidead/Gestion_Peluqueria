@@ -27,7 +27,7 @@ class ClientesController extends Controller
         ]);
 		
 		Clientes::create($validatedData);
-		return redirect('/clientes');
+		return redirect('/clientes')->with("añadir_cliente",'El cliente se ha creado correctamente!.');
     }
 
     public function show($id)
@@ -48,7 +48,7 @@ class ClientesController extends Controller
             'telefono' => 'required',
         ]);
 		Clientes::find($id)->update($validatedData);
-		return redirect('/clientes');
+		return redirect('/clientes')->with("editar_cliente",'El cliente se ha editado correctamente!.');
     }
 
     public function destroy($id)

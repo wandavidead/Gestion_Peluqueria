@@ -1,9 +1,9 @@
 @extends('layouts.layout') @section("content")
 <div class="col-md-8 offset-md-2 mt-5">
 	<div class="card card-outline-secondary">
-		<div class="card-header">
-			<h3 class="mb-0">@lang('New Appointment')</h3>
-		</div>
+		@section("title")
+			<h1>@lang('New Appointment')</h1>
+		@endsection
 		<div class="card-body">
 			@if ($error)
 			<span class="text-danger">Hubo un problema de base de datos.</span>
@@ -82,9 +82,7 @@
 				<div class="form-group row">
 					<label class="col-lg-3 col-form-label form-control-label"></label>
 					<div class="col-lg-9">
-						<a href="{{ route('citas.index') }}" class="btn btn-info"
-							>@lang('Return')</a
-						>
+						<a href="/citas" class="btn ml-auto"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
 						<input type="submit" value="@lang('Save')" class="btn btn-success" />
 					</div>
 				</div>

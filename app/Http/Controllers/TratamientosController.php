@@ -26,7 +26,7 @@ class TratamientosController extends Controller
     {
 		$validatedData = $request->validate([
                 'denominacion' => 'required | min:5 | max:100',
-			 	'precio' => 'required',
+                'precio' => 'required',
 				'producto_id' => 'required',
             ]);
 		$validatedData = $request->except('producto_id');
@@ -40,7 +40,7 @@ class TratamientosController extends Controller
 			$producto=Productos::find($idproducto);
 			Productos::where('id', $idproducto)->update(array('cantidad' => $producto[0]->cantidad - 1));
 			DB::commit();
-			return redirect('/tratamientos');
+			return redirect('/tratamientos')->with("añadir_tratamiento",'El tratamiento se ha creado correctamente!.');
    		} catch (\Exception $e){
 			dd($e);
 			DB::rollback();
@@ -53,7 +53,7 @@ class TratamientosController extends Controller
         return view('tratamientos.show', ['tratamientos' => Tratamientos::find($id)]);
     }
 
-     public function edit($id)
+    public function edit($id)
     {
 		$data=TratamientoProducto::where('tratamiento_id', $id)->get('producto_id');
         return view('tratamientos.update', ['tratamientos' => Tratamientos::find($id),'datos' => $data[0]->producto_id,'productos' => Productos::all()]);
@@ -63,10 +63,10 @@ class TratamientosController extends Controller
     {
         $validatedData = $request->validate([
                 'denominacion' => 'required | min 5 | max 100',
-			 	'precio' => 'required | between:3,159.99',
+                'precio' => 'required | between:3,159.99',
             ]);
 		Tratamientos::find($id)->update($validatedData);
-		return redirect('/tratamientos');
+		return redirect('/tratamientos')->with("editar_tratamiento",'El tratamiento se ha editado correctamente!.');
     }
 
     public function destroy($id)

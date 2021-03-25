@@ -34,7 +34,7 @@
                             <a href="/empleados/{{ $empleado->id }}/edit"> <i class="far fa-edit fa-2x"></i></a>
                         </td>
                         <td>
-                            <form method="POST" action="/empleados/{{ $empleado->id }}">
+                            <form class="formeliminar" method="POST" action="/empleados/{{ $empleado->id }}">
                                 <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
                                 <input type="hidden" name="_method" value="DELETE" />
                                 @csrf @method('delete')
@@ -45,4 +45,14 @@
             </tbody>
         </table>
     </div>
+@if(Session::has('añadir_empleado'))
+	<script>
+		toastr.success("{!!Session::get('añadir_empleado')!!}")
+	</script>
+@endif
+@if(Session::has('editar_empleado'))
+    <script>
+        toastr.success("{!!Session::get('editar_empleado')!!}")
+    </script>
+@endif
 @endsection

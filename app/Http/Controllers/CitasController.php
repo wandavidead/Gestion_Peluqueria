@@ -57,7 +57,7 @@ class CitasController extends Controller
 			$crearCita['cita_id']=$data->id;
 			CitasTratamientos::create($crearCita);
 			DB::commit();
-			return redirect('/citas');
+			return redirect('/citas')->with("añadir_cita",'La cita se ha creado correctamente!.');
    		} catch (\Exception $e){
 			DB::rollback();
 			return view('citas.create', ['error' => true,'empleados' => Empleados::all(),'clientes' => Clientes::all(),'tratamientos' => Tratamientos::all()]);
@@ -75,7 +75,7 @@ class CitasController extends Controller
     public function edit($id)
     {
 		$data=CitasTratamientos::where('cita_id', $id)->get('tratamiento_id');
-        return view('citas.update', ['citas' => Citas::find($id),'datos' => $data[0]->tratamiento_id,'empleados' => Empleados::all(),'clientes' => Clientes::all(),'tratamientos' => Tratamientos::all()]);
+        return view('citas.update', ['citas' => Citas::find($id),'datos' => $data[0]->nombre_completo,'empleados' => Empleados::all(),'clientes' => Clientes::all(),'tratamientos' => Tratamientos::all()]);
     }
 
     public function update(Request $request, $id)
@@ -91,7 +91,7 @@ class CitasController extends Controller
 		$actualizarCita = $request->only('tratamiento_id');
 		Citas::find($id)->update($validatedData);
 		CitasTratamientos::find($id)->update($actualizarCita);
-		return redirect('/citas/'.$id);
+		return redirect('/citas/'.$id)->with("editar_cita",'La cita se ha editado correctamente!.');
     }
 
     public function destroy($id)

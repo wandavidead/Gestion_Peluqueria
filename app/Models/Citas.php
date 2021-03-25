@@ -27,12 +27,12 @@ class Citas extends Model
 	
 	public function tratamientos()
     {
- 		return $this->belongsToMany(Tratamientos::class,'citas_tratamientos');
+        return $this->belongsToMany(Tratamientos::class,'citas_tratamientos');
     }
 
     public function gettiempoAttribute(){
         $timestamp = $this->fecha_cita;
         $datetime = explode(" ",$timestamp);
-    	return $time = $datetime[1];
+        return $time = $datetime[1];
 	}
 }

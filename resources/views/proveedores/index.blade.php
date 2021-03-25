@@ -11,7 +11,6 @@
                     <th style="width: 200px; border-bottom: solid 1px #000;">@lang('Social denomination')</th>
                     <th style="width: 200px; border-bottom: solid 1px #000;">@lang('Direction')</th>
                     <th style="width: 50px; border-bottom: solid 1px #000;">@lang('Telephone')</th>
-                    <th style="width: 50px; border-bottom: solid 1px #000;">@lang('Show')</th>
                     <th style="width: 50px; border-bottom: solid 1px #000;">@lang('Edit')</th>
                     <th style="width: 50px; border-bottom: solid 1px #000;">@lang('Delete')</th>
                 </tr>
@@ -23,13 +22,10 @@
                         <td style="text-align: center;">{{ $proveedor->direccion }}</td>
                         <td style="text-align: center;">{{ $proveedor->telefono }}</td>
                         <td>
-                            <a href="/proveedores/{{ $proveedor->id }}"><i class="far fa-eye fa-2x"></i></a>
-                        </td>
-                        <td>
                             <a href="/proveedores/{{ $proveedor->id }}/edit"> <i class="far fa-edit fa-2x"></i></a>
                         </td>
                         <td>
-                            <form method="POST" action="/proveedores/{{ $proveedor->id }}">
+                            <form class="formeliminar" method="POST" action="/proveedores/{{ $proveedor->id }}">
                                 <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
                                 <input type="hidden" name="_method" value="DELETE" />
                                 @csrf @method('delete')
@@ -40,4 +36,14 @@
             </tbody>
         </table>
     </div>
+@if(Session::has('añadir_proveedor'))
+	<script>
+		toastr.success("{!!Session::get('añadir_proveedor')!!}")
+	</script>
+@endif
+@if(Session::has('editar_proveedor'))
+    <script>
+        toastr.success("{!!Session::get('editar_proveedor')!!}")
+    </script>
+@endif
 @endsection

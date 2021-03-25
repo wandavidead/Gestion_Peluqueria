@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    {{-- CDN css --}}
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
@@ -14,8 +15,11 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
-    <!-- Font Awesome JS -->
+    {{-- CDN scrips --}}
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
         integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous">
     </script>
@@ -35,16 +39,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
         integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw=="
         crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
+        integrity="sha512-Yk47FuYNtuINE1w+t/KT4BQ7JaycTCcrvlSvdK/jry6Kcxqg5vN7/svVWCxZykVzzJHaxXk5T9jnFemZHSYgnw=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
             <div class="sidebar-header">
                 <h3><a class="navbar-brand" href="{{ url('/menu') }}">@lang('Hairdressing')</a></h3>
-                <strong>HD</strong>
             </div>
+
             <ul class="list-unstyled components">
                 <li>
                     <a href="{{ url('/menu') }}">
@@ -103,7 +119,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-power-off"></i>
                         <span>@lang('Logout')</span>
                     </a>
@@ -115,10 +132,15 @@
         </nav>
         <!-- Page Content  -->
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
@@ -144,29 +166,61 @@
                 @yield('content')
             </div>
         </div>
-    </div>
-    </div>
-    <script src="/js/scriptmenu.js"></script>
-    <style type="text/css">
-        .table {
-            border-top: 2px solid #ccc;
-        }
-    </style>
-    <script>
-        $(document).ready(function() {
-            $('#table_id').DataTable();
-        });
 
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(function() {
-                $('#fecha_cita').datetimepicker();
+        <div class="overlay"></div>
+        
+        <script src="/js/scriptmenu.js"></script>
+
+        <style type="text/css">
+            .table {
+                border-top: 2px solid #ccc;
+            }
+
+        </style>
+
+        <script>
+            $(document).ready(function() {
+                $('#table_id').DataTable();
             });
-            $('select').selectpicker();
-        });
-    </script>
 
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(function() {
+                    $('#fecha_cita').datetimepicker();
+                });
+                $('select').selectpicker();
+            });
+        </script>
+
+        @if(Session::has('borrar_cita'))
+            <script>
+                Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+            </script>
+        @endif
+        <script>
+            $('.formeliminar').submit(function(e){
+                e.preventDefault();
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if(result.isConfirmed){
+                    this.submit();
+                }
+            }) 
+            })
+        </script>
 </body>
 
 </html>

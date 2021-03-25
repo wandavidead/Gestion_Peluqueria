@@ -48,6 +48,12 @@
 		});
 	})
 </script>
+@if(Session::has('añadir_cita'))
+	<script>
+		toastr.success("{!!Session::get('añadir_cita')!!}")
+	</script>
+@endif
+
 @endsection
 
 

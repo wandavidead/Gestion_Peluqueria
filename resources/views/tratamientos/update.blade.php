@@ -1,9 +1,9 @@
 @extends('layouts.layout') @section('content')
     <div class="col-md-8 offset-md-2 mt-5">
         <div class="card card-outline-secondary">
-            <div class="card-header">
-                <h3 class="mb-0">@lang('Edit Treatment')</h3>
-            </div>
+            @section("title")
+                <h1>@lang('Edit Treatment')</h1>
+            @endsection                
             <div class="card-body">
                 <div class="table-container">
                     <form class="form" method="POST" action="{{ route('tratamientos.update', $tratamientos->id) }}"

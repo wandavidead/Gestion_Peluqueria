@@ -5,7 +5,7 @@
                 <h3 class="mb-0">@lang('Appointment')</h3>
                 <a href="/citas" class="btn ml-auto"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
                 <a href="/citas/{{ $citas->id }}/edit" class="btn"><i class="far fa-edit fa-2x"></i></a>
-                <form method="POST" action="/citas/{{ $citas->id }}">
+                <form class="formeliminar" method="POST" action="/citas/{{ $citas->id }}">
                     <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
                     <input type="hidden" name="_method" value="DELETE" />
                     @csrf @method('delete')
@@ -47,4 +47,9 @@
             </div>
         </div>
     </div>
+@if(Session::has('editar_cita'))
+    <script>
+        toastr.success("{!!Session::get('editar_cita')!!}")
+    </script>
+@endif
 @endsection

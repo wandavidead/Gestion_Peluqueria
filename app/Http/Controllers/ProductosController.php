@@ -68,7 +68,7 @@ class ProductosController extends Controller
 			$crearRelacion['producto_id']=$data->id;
 			ProductosProveedores::create($crearRelacion);
 			DB::commit();
-			return redirect('/productos');
+			return redirect('/productos')->with("añadir_producto",'El producto se ha creado correctamente!.');
         } catch (\Exception $e){
             dd($e);
 			DB::rollback();
@@ -90,7 +90,7 @@ class ProductosController extends Controller
     {
         $datos=$request->all();
 		Productos::find($id)->update($datos);
-		return redirect('/productos');
+		return redirect('/productos')->with("editar_producto",'El producto se ha editado correctamente!.');
     }
 
     public function destroy($id)

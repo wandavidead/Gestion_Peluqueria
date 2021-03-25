@@ -1,9 +1,9 @@
 @extends('layouts.layout') @section('content')
     <div class="col-md-8 offset-md-2 mt-5">
         <div class="card card-outline-secondary">
-            <div class="card-header">
-                <h3 class="mb-0">@lang('New Treatment')</h3>
-            </div>
+            @section("title")
+                <h1>@lang('New Treatment')</h1>
+            @endsection
             <div class="card-body">
                 @if ($error)
                     <span class="text-danger">Hubo un problema de base de datos.</span>

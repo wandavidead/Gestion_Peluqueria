@@ -33,7 +33,7 @@
                             <a href="/productos/{{ $producto->id }}/edit" <i class="far fa-edit fa-2x"></i></a>
                         </td>
                         <td>
-                            <form method="POST" action="/productos/{{ $producto->id }}">
+                            <form class="formeliminar" method="POST" action="/productos/{{ $producto->id }}">
                                 <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
                                 <input type="hidden" name="_method" value="DELETE" />
                                 @csrf @method('delete')
@@ -44,4 +44,14 @@
             </tbody>
         </table>
     </div>
+@if(Session::has('añadir_producto'))
+	<script>
+		toastr.success("{!!Session::get('añadir_producto')!!}")
+	</script>
+@endif
+@if(Session::has('editar_producto'))
+    <script>
+        toastr.success("{!!Session::get('editar_producto')!!}")
+    </script>
+@endif
 @endsection

@@ -27,7 +27,7 @@ class ProveedoresController extends Controller
         ]);
 		
 		Proveedores::create($validatedData);
-		return redirect('/proveedores');
+		return redirect('/proveedores')->with("añadir_proveedor",'El proveedor se ha creado correctamente!.');
     }
 
     public function show($id)
@@ -48,7 +48,7 @@ class ProveedoresController extends Controller
             'telefono' => 'required',
         ]);
 		Proveedores::find($id)->update($validatedData);
-		return redirect('/proveedores');
+		return redirect('/proveedores')->with("editar_proveedor",'El proveedor se ha editado correctamente!.');
     }
 
     public function destroy($id)

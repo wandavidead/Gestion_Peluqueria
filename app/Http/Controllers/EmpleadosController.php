@@ -23,7 +23,7 @@ class EmpleadosController extends Controller
     {
         $datos=$request->all();
 		Empleados::create($datos);
-		return redirect('/empleados');
+		return redirect('/empleados')->with("añadir_empleado",'El empleado se ha creado correctamente!.');
     }
 
     public function show($id)
@@ -40,7 +40,7 @@ class EmpleadosController extends Controller
     {
         $datos=$request->all();
 		Empleados::find($id)->update($datos);
-		return redirect('/empleados');
+		return redirect('/empleados')->with("editar_empleado",'El empleado se ha editado correctamente!.');
     }
 
     public function destroy($id)

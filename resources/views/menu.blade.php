@@ -1,4 +1,7 @@
 @extends('layouts.layout') @section('content')
+    @section("title")
+	<h1>@lang('Home')</h1>
+	@endsection
     <div class="container">
         <div class="row">
             <div class="d-flex flex-wrap justify-content-center">
