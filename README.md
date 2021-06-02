@@ -1,62 +1,118 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Gestion de citas de una Peluqueria.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Sobre el proyecto](#sobre-el-proyecto)
+- [Instalación](#instalacion)
+  - [Intalacion de contenidos con Script](#install-script)
+  - [Instalacion de GIT](#instalar-git)
+  - [Instalacion de archivos del GITHUB](#github)
+  - [Usar base de datos Postgresql](#Postgresql)
+  - [Importar base de datos](#importar)
+  - [Configurar fichero .env](#env)
+- [Poner en funcionamiento el servidor.](#funcionamiento)
+- [Maintainers](#maintainers)
+- [License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<a id="sobre-el-proyecto"></a>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Sobre el proyecto
 
-## Learning Laravel
+El planteamiento del proyecto se basa en gestionar las citas de una peluqueria, el almacen de productos y a los proveedores que pertenece y  un control de los empleados y los clientes.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<a id="instalacion"></a>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<a id="install-script"></a>
 
-## Laravel Sponsors
+## Instalación
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Intalacion de contenidos con Script 
 
-### Premium Partners
+Para empezar ejecutaremos el script con nombre install.sh el cual automaticamente y con algunas preguntas, nos descargara todo lo necesario, siendo el laravel 8, posgresql, php, node.js que se usa con los paquetes del laravel de livewire que tambien seran instalados.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+<a id="instalar-git"></a>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Instalacion de GIT
 
-## Code of Conduct
+Una vez configuremos la base de datos y el fichero .env seguiremos con la instalación de Git en el equipo donde se almacenarán los proyectos (servidor) se realiza a través de apt.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+`sudo apt install git`
 
-## Security Vulnerabilities
+Una vez instalado el servicio, se debe de crear un usuario llamado git el cual se utilizará para crear los proyectos desde la terminal de comandos del servidor.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`sudo adduser git`
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<a id="github"></a>
+
+### Instalacion de archivos del GITHUB.
+
+Ya con el GIT instalado empezaremos a pasar todos los ficheros del github al proyecto para que todo se encuentre en su lugar.
+``` term=
+git clone https://github.com/wandavidead/Gestion_Peluqueria.git
+composer install ""
+``` 
+
+<a id="Postgresql"></a>
+
+### Usar base de datos Postgresql
+
+Cuando se haya hecho todo no podras usar root como usuario y vas a tener que entrar en posgresql y configurar un nuevo usuario con todos los privilegios.
+`psql -U postgres`
+Una vez iniciado con el usuario por defecto tenemos que ejecutar los siguientes comandos para crear la base de datos y el usuario con todos los permisos
+
+```sql=
+CREATE DATABASE gestion_peluqueria;
+CREATE USER usuario WITH PASSWORD 'contraseña-del-usuario';
+GRANT ALL PRIVILEGES ON DATABASE gestion_peluqueria to usuario;
+```
+
+Y con el siguiente comando seria para finalizar la sesion `\q`
+
+<a id="importar"></a>
+
+### Importar base de datos.
+
+Ya tenemos casi todo instalado ahora tenemos que importar la base de datos que se habra descargado junto con todos los archivos, vamos a importar la base de datos para que se genere la estructura.
+```sql=
+psql -U usuario -d gestion_peluqueria -h 127.0.0.1 < dump.sql
+```
+
+<a id="env"></a>
+
+### Configurar fichero .env
+
+Una `vez` con la base de datos creada y el ususario creado vamos ha configurar el fichero .env con el nombre de la base de datos el usuario y su contraseña.
+nano env
+```env=
+DB_DATABASE=nombre-de-la-base-de-datos
+DB_USERNAME=nombre-usuario
+DB_PASSWORD=contraseña-del-usuario
+```
+
+<a id="funcionamiento"></a>
+
+## Poner en funcionamiento el servidor.
+
+Despues con todos los pasos previos hecho con solo ejecutar `php artisan serve` ya se pondria el servidor con la pagina operativa.
+
+y cuando tengamos la pagina operativa si vamos ha  http://127.0.0.1:8000/adminer.php se abrira el administrador de la base de datos en el cual podremos vizualizar la base de datos y modificarlas.
+
+
+<a id="mantenimiento"></a>
+
+## Mantenimiento
+
+Actualmente, el único encargado de mantenimiento es David (https://github.com/wandavidead).Se seguira trabajando en el proyecto y evolucionandolo lo maximo posible y todo mantenedor que quiera trabajaar en el proyecto es bienvenido.
+
+<a id="licencia"></a>
+
+## Licencia
+
+El framework de Laravel es un software de código abierto con licencia MIT.
+
+PostgreSQL se publica bajo la licencia PostgreSQL, una licencia de código abierto liberal, similar a las licencias BSD o MIT.
+
+Casi todas las demas licencia cumple con las normativas de MIT pero las mas a remalcar son la licencia de laravel y la licencia de posgresql.
